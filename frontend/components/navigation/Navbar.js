@@ -21,20 +21,6 @@ const tabs = [
                 name: "Shared Persistency",
                 href: "/inter/shared-persistency",
             },
-            { name: "Sand Pile", href: "/inter/sandpile" },
-            { name: "Service Chain", href: "/inter/service-chain" },
-            {
-                name: "Scattered Parasitic Functionality",
-                href: "/inter/scattered-parasitic",
-            },
-            {
-                name: "Stovepipe Service",
-                href: "/inter/stovepipe-service",
-            },
-            {
-                name: "Wrong Cuts",
-                href: "/inter/wrong-cuts",
-            },
         ],
     },
     {
@@ -51,9 +37,19 @@ const tabs = [
     {
         section: "Other antipatterns",
         tabs: [
+            { name: "Sand Pile", href: "/inter/sandpile" },
+            { name: "Service Chain", href: "/inter/service-chain" },
             {
-                name: "...",
-                href: "/antipatterns/cyclic-dependencies",
+                name: "Scattered Parasitic Functionality",
+                href: "/inter/scattered-parasitic",
+            },
+            {
+                name: "Stovepipe Service",
+                href: "/inter/stovepipe-service",
+            },
+            {
+                name: "Wrong Cuts",
+                href: "/inter/wrong-cuts",
             },
         ],
     },
