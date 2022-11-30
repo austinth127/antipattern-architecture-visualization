@@ -52,7 +52,7 @@ const Home = () => {
                         to recognize these bad practices and avoid them while
                         developing microservices.
                     </p>
-                    <p className="font-normal">
+                    <p className="font-normal pb-16">
                         <div className="pb-8 text-2xl  font-semibold">
                             Some vocabulary we will be using:
                         </div>
@@ -81,12 +81,12 @@ const Home = () => {
                             </ul>
                         </div>
                     </p>
-                    <p className="font-bold text-2xl blue-green-gradient-text  drop-shadow-md pt-24 pb-16 text-center">
+                    {/* <p className="font-bold text-2xl blue-green-gradient-text  drop-shadow-md pt-24 pb-16 text-center">
                         How to use the visualization tool:
                     </p>
                     <div>
                         <IndexVisLayout step={steps[0]} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

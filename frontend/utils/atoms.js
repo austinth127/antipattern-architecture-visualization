@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 import data from "../public/data/train-ticket.json";
+import { darkTheme, lightTheme } from "./visualizer/colors";
 
 /*
  * Jotai is a global state management library. We do this by defining
@@ -18,3 +19,4 @@ export const initRotationAtom = atom(AtomNotInitialized);
 export const graphDataAtom = atom(data);
 export const graphSearchAtom = atom("");
 export const couplingThresholdAtom = atom(8);
+export const themeAtom = atom(darkTheme);

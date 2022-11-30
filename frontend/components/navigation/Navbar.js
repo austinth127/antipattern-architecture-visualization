@@ -23,36 +23,36 @@ const tabs = [
             },
         ],
     },
-    {
-        section: "Intra-node antipatterns",
-        tabs: [
-            { name: "Chatty Service", href: "/intra/chatty" },
-            { name: "Mega Service", href: "/intra/megaservice" },
-            {
-                name: "Low Cohesive Operations",
-                href: "/intra/low-cohesion",
-            },
-        ],
-    },
-    {
-        section: "Other antipatterns",
-        tabs: [
-            { name: "Sand Pile", href: "/inter/sandpile" },
-            { name: "Service Chain", href: "/inter/service-chain" },
-            {
-                name: "Scattered Parasitic Functionality",
-                href: "/inter/scattered-parasitic",
-            },
-            {
-                name: "Stovepipe Service",
-                href: "/inter/stovepipe-service",
-            },
-            {
-                name: "Wrong Cuts",
-                href: "/inter/wrong-cuts",
-            },
-        ],
-    },
+    // {
+    //     section: "Intra-node antipatterns",
+    //     tabs: [
+    //         { name: "Chatty Service", href: "/intra/chatty" },
+    //         { name: "Mega Service", href: "/intra/megaservice" },
+    //         {
+    //             name: "Low Cohesive Operations",
+    //             href: "/intra/low-cohesion",
+    //         },
+    //     ],
+    // },
+    // {
+    //     section: "Other antipatterns",
+    //     tabs: [
+    //         { name: "Sand Pile", href: "/inter/sandpile" },
+    //         { name: "Service Chain", href: "/inter/service-chain" },
+    //         {
+    //             name: "Scattered Parasitic Functionality",
+    //             href: "/inter/scattered-parasitic",
+    //         },
+    //         {
+    //             name: "Stovepipe Service",
+    //             href: "/inter/stovepipe-service",
+    //         },
+    //         {
+    //             name: "Wrong Cuts",
+    //             href: "/inter/wrong-cuts",
+    //         },
+    //     ],
+    // },
 ];
 
 /**
