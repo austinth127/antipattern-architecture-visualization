@@ -1,6 +1,7 @@
 import { atom } from "jotai";
 import { darkTheme, lightTheme } from "./colors";
 
+
 /*
  * Jotai is a global state management library. We do this by defining
  * atoms and accessing them using hooks in our components (typically useAtom).
@@ -18,5 +19,4 @@ export const initRotationAtom = atom(AtomNotInitialized);
 export const graphDataAtom = atom(null);
 export const graphSearchAtom = atom("");
 export const couplingThresholdAtom = atom(8);
-
 export const themeAtom = atom(darkTheme);

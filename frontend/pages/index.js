@@ -45,6 +45,7 @@ const Home = () => {
                         developing microservices.
                     </p>
                     <div className="font-normal">
+
                         <div className="pb-8 text-2xl  font-semibold">
                             Some vocabulary we will be using:
                         </div>
@@ -73,6 +74,7 @@ const Home = () => {
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

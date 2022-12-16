@@ -8,6 +8,7 @@ export const lightTheme = {
 
 export const darkTheme = {
     name: "dark",
+
     green: "rgb(0,255,0)",
     red: "rgb(255,0,0)",
     arrowColor: "rgb(255,255,255)",
