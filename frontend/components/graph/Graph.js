@@ -3,13 +3,14 @@ import * as NodeFns from "../../utils/visualizer/nodeFunctions";
 import { CustomSinCurve } from "../../utils/visualizer/ThreeExtensions";
 import React, { useEffect, useState, useCallback } from "react";
 import ForceGraph3D, { ForceGraphMethods } from "react-force-graph-3d";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import {
     initCoordsAtom,
     initRotationAtom,
     graphDataAtom,
     couplingThresholdAtom,
     graphSearchAtom,
+    themeAtom,
 } from "../../utils/atoms";
 import SpriteText from "three-spritetext";
 import { useRouter } from "next/router";
@@ -35,11 +36,13 @@ const GraphComponent = ({
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const [threshold, setThreshold] = useAtom(couplingThresholdAtom);
 
-    const [graphData] = useAtom(graphDataAtom);
+    const [graphData, setGraphData] = useAtom(graphDataAtom);
 
     const [initCoords, setInitCoords] = useAtom(initCoordsAtom);
     const [initRotation, setInitRotation] = useAtom(initRotationAtom);
     const [search] = useAtom(graphSearchAtom);
+    const [hasLoaded, setHasLoaded] = useState(false);
+    const theme = useAtomValue(themeAtom);
 
     const router = useRouter();
 
@@ -60,18 +63,17 @@ const GraphComponent = ({
 
         setInitCoords({ x, y, z });
         setInitRotation(graphRef.current.camera().quaternion);
+        updateHighlight();
     }, [window.innerWidth, window.innerHeight]);
 
-    // This is a hack
     useEffect(() => {
-        router.events.on("routeChangeComplete", () => {
-            router.reload();
-        });
-    }, []);
+        if (hasLoaded) {
+            updateHighlight();
+        }
+    }, [graphData, threshold, hasLoaded]);
 
     useEffect(() => {
         if (isIntraNode == true) {
-            console.log("here");
             var grid = new THREE.GridHelper(500, 20);
             grid.position.set(0, -250, 0);
             graphRef.current.scene().add(grid);
@@ -98,6 +100,8 @@ const GraphComponent = ({
     useEffect(() => {
         if (typeof graphData.links[0].source == "string") return;
     }, [search]);
+
+    useEffect(() => {}, [graphData]);
 
     // Highlight neighbors
     const getHighlightNeighbors = (node) => {
@@ -190,7 +194,7 @@ const GraphComponent = ({
     const getGraphColor = (node) => {
         if (highlightNodes && highlightNodes.has(node)) {
             if (node === hoverNode) {
-                return `rgb(50,50,200)`;
+                return `rgb(252, 186, 3)`;
             } else {
                 return `rgb(0,200,200)`;
             }
@@ -201,9 +205,10 @@ const GraphComponent = ({
     const textNode = (node) => {
         const sprite = new SpriteText(node.id);
         sprite.color = getGraphColor(node);
-        sprite.textHeight = 2;
+        sprite.textHeight = 3;
         sprite.fontWeight = "bold";
-        sprite.backgroundColor = "rgba(10,10,10,0.2)";
+        sprite.backgroundColor = theme.spriteBGColor;
+        // "rgba(10,10,10, 0.6)"
         sprite.padding = 2;
         return sprite;
     };
@@ -254,6 +259,10 @@ const GraphComponent = ({
         return group;
     };
 
+    if (!graphData) {
+        return <></>;
+    }
+
     const Graph = (
         <ForceGraph3D
             //  Setup shapes
@@ -271,7 +280,7 @@ const GraphComponent = ({
             }
             // Width of data transfer points
             linkDirectionalParticleWidth={3}
-            linkDirectionalArrowLength={6}
+            linkDirectionalArrowLength={8}
             linkDirectionalArrowRelPos={1}
             // Select node on left click
             onNodeClick={handleNodeClick}
@@ -285,8 +294,12 @@ const GraphComponent = ({
             width={dimensions.width}
             height={dimensions.height}
             ref={graphRef}
-            backgroundColor={"rgba(0,0,0,0)"}
+            backgroundColor={"rgba(255,255,255, 0)"}
             enableNodeDrag={false}
+            warmupTicks={100}
+            onEngineTick={() => setHasLoaded(true)}
+            d3VelocityDecay={0.25}
+            linkColor={() => theme.arrowColor}
         ></ForceGraph3D>
     );
 

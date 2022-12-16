@@ -2,14 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import IndexVisLayout from "../components/general/IndexGraphLayout";
 
-const steps = [
-    {
-        title: "Welcome",
-        number: 1,
-        text: "Walk through the following steps to explore the graph!",
-    },
-];
-
 /**
  * This page renders the 3d force graph.
  *
@@ -52,7 +44,8 @@ const Home = () => {
                         to recognize these bad practices and avoid them while
                         developing microservices.
                     </p>
-                    <p className="font-normal pb-16">
+                    <div className="font-normal">
+
                         <div className="pb-8 text-2xl  font-semibold">
                             Some vocabulary we will be using:
                         </div>
@@ -80,13 +73,8 @@ const Home = () => {
                                 </li>
                             </ul>
                         </div>
-                    </p>
-                    {/* <p className="font-bold text-2xl blue-green-gradient-text  drop-shadow-md pt-24 pb-16 text-center">
-                        How to use the visualization tool:
-                    </p>
-                    <div>
-                        <IndexVisLayout step={steps[0]} />
-                    </div> */}
+                    </div>
+
                 </div>
             </div>
         </div>

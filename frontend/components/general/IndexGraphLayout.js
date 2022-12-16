@@ -4,9 +4,10 @@ import GraphMenu from "../graph/rightMenu/GraphMenu";
 import { InfoBox } from "../graph/clickMenu/InfoBox";
 import Router, { useRouter } from "next/router";
 import StepDescription from "./StepDesc";
-import { graphDataAtom } from "../../utils/atoms";
-import { useAtom } from "jotai";
+import { graphDataAtom, themeAtom } from "../../utils/atoms";
+import { useAtom, useAtomValue } from "jotai";
 import { getNeighbors } from "../../utils/visualizer/nodeFunctions";
+import { theme } from "../../utils/colors";
 
 const IndexVisLayout = ({ step }) => {
     /**
@@ -16,25 +17,7 @@ const IndexVisLayout = ({ step }) => {
     const graphRef = useRef();
     const [graphData] = useAtom(graphDataAtom);
     const [dimensions, setDimensions] = useState();
-
-    const { asPath } = useRouter();
-
-    function getColor(node, threshold) {
-        let { nodes, links } = graphData;
-        let numNeighbors = getNeighbors(node, links).nodes.length;
-
-        if (numNeighbors > threshold) {
-            return `rgb(255,0,0)`;
-        }
-        if (numNeighbors > threshold / 2) {
-            return `rgb(255,160,0)`;
-        }
-
-        return `rgb(0,255,0)`;
-    }
-    if (typeof graphData == "undefined" || typeof window == "undefined") {
-        return <></>;
-    }
+    const theme = useAtomValue(themeAtom);
 
     useEffect(() => {
         if (typeof window == "undefined") return;
@@ -43,6 +26,24 @@ const IndexVisLayout = ({ step }) => {
             height: window.innerHeight / 1.5,
         });
     }, []);
+    const { asPath } = useRouter();
+
+    function getColor(node, threshold) {
+        let { nodes, links } = graphData;
+        let numNeighbors = getNeighbors(node, links).nodes.length;
+
+        if (numNeighbors > threshold) {
+            return theme.green;
+        }
+        // if (numNeighbors > threshold / 2) {
+        //     return `rgb(255,160,0)`;
+        // }
+
+        return theme.red;
+    }
+    if (typeof graphData == "undefined" || typeof window == "undefined") {
+        return <></>;
+    }
 
     return (
         <div className="flex flex-col justify-center items-center w-full h-screen relative z-10 gap-8">

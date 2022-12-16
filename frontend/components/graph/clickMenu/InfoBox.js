@@ -16,7 +16,7 @@ export const InfoBox = () => {
                 {/* <ul className="list-disc list-inside">
                     Dependencies: {dependencies ?? "None"}
                 </ul> */}
-                <ul className="list-disc list-inside">Depends On: {depends}</ul>
+                <ul className="list-disc list-inside">Neighbors: {depends}</ul>
                 <button
                     onClick={() => setShow(false)}
                     className="hover:blue-green-gradient-text"

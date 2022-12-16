@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import NavItem from "./NavItem";
 
 const tabs = [
@@ -8,51 +9,17 @@ const tabs = [
         tabs: [
             {
                 name: "Cyclical Dependencies",
-                href: "/inter/cyclic-dependencies",
+                href: "/internode?pattern=cyclic-dependencies",
             },
-            { name: "Knot", href: "/inter/knot" },
-            { name: "Bottleneck", href: "/inter/bottleneck" },
-            { name: "Nanoservice", href: "/inter/nanoservice" },
+            { name: "Knot", href: "/internode?pattern=knot" },
+            { name: "Nanoservice", href: "/internode?pattern=nanoservice" },
+            { name: "Bottleneck", href: "/internode?pattern=bottleneck" },
             {
                 name: "Duplicated Service",
-                href: "/inter/duplicated-service",
-            },
-            {
-                name: "Shared Persistency",
-                href: "/inter/shared-persistency",
+                href: "/internode?pattern=duplicated-service",
             },
         ],
     },
-    // {
-    //     section: "Intra-node antipatterns",
-    //     tabs: [
-    //         { name: "Chatty Service", href: "/intra/chatty" },
-    //         { name: "Mega Service", href: "/intra/megaservice" },
-    //         {
-    //             name: "Low Cohesive Operations",
-    //             href: "/intra/low-cohesion",
-    //         },
-    //     ],
-    // },
-    // {
-    //     section: "Other antipatterns",
-    //     tabs: [
-    //         { name: "Sand Pile", href: "/inter/sandpile" },
-    //         { name: "Service Chain", href: "/inter/service-chain" },
-    //         {
-    //             name: "Scattered Parasitic Functionality",
-    //             href: "/inter/scattered-parasitic",
-    //         },
-    //         {
-    //             name: "Stovepipe Service",
-    //             href: "/inter/stovepipe-service",
-    //         },
-    //         {
-    //             name: "Wrong Cuts",
-    //             href: "/inter/wrong-cuts",
-    //         },
-    //     ],
-    // },
 ];
 
 /**
@@ -63,6 +30,21 @@ const tabs = [
  */
 const Navbar = ({ ...props }) => {
     const [navOpen, setNavOpen] = useState();
+    const router = useRouter();
+
+    useEffect(() => {
+        const handleRouteChange = () => {
+            setNavOpen(false);
+            // Very annoying fix
+            router.reload();
+        };
+
+        router.events.on("routeChangeComplete", handleRouteChange);
+
+        return () => {
+            router.events.off("routeChangeComplete", handleRouteChange);
+        };
+    }, [router]);
 
     return (
         <div

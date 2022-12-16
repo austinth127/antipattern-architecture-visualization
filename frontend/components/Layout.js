@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "../components/navigation/Navbar";
 import Footer from "../components/navigation/Footer";
 import { useRouter } from "next/router";
+import { useAtomValue } from "jotai";
+import { themeAtom } from "../utils/atoms";
 
 const gradientBackground = {
     backgroundColor: `rgb(2,0,36)`,
@@ -25,10 +27,11 @@ const gradientBackground = {
  */
 const Layout = ({ children, ...props }) => {
     const { asPath } = useRouter();
+    const theme = useAtomValue(themeAtom);
     return (
         <div
-            className="h-fit text-gray-50 overflow-x-clip"
-            style={gradientBackground}
+            className={`h-fit text-gray-50 overflow-x-clip bg-white`}
+            style={theme.background}
         >
             <Navbar />
             <main className="min-h-screen">{children}</main>

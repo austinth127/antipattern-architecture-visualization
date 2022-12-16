@@ -1,6 +1,6 @@
 import { atom } from "jotai";
-import data from "../public/data/train-ticket.json";
-import { darkTheme, lightTheme } from "./visualizer/colors";
+import { darkTheme, lightTheme } from "./colors";
+
 
 /*
  * Jotai is a global state management library. We do this by defining
@@ -16,7 +16,7 @@ const AtomNotInitialized = new Error("This atom has not been initialized");
 // The initial coordinates of the graph camera, to be set on graph render
 export const initCoordsAtom = atom({ x: null, y: null, z: null });
 export const initRotationAtom = atom(AtomNotInitialized);
-export const graphDataAtom = atom(data);
+export const graphDataAtom = atom(null);
 export const graphSearchAtom = atom("");
 export const couplingThresholdAtom = atom(8);
 export const themeAtom = atom(darkTheme);

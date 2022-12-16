@@ -18,7 +18,7 @@ const Slider = () => {
             <input
                 type="range"
                 min={0}
-                max={graphData.nodes.length ?? 100}
+                max={graphData.nodes.length * 2 ?? 100}
                 value={value}
                 onInput={(e) => handleInput(e)}
                 id="slider"

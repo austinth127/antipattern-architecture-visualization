@@ -1,0 +1,27 @@
+{
+    "nodes": [
+        { "id": "A", "nodeType": "service" },
+        { "id": "B", "nodeType": "service" },
+        { "id": "C", "nodeType": "service" },
+        { "id": "D", "nodeType": "service" },
+        { "id": "E", "nodeType": "service" },
+        { "id": "F", "nodeType": "service" },
+        { "id": "G", "nodeType": "service" },
+        { "id": "H", "nodeType": "service" },
+        { "id": "I", "nodeType": "service" }
+    ],
+    "links": [
+        { "source": "A", "target": "B" },
+        { "source": "A", "target": "C" },
+        { "source": "A", "target": "I" },
+        { "source": "C", "target": "D" },
+        { "source": "B", "target": "E" },
+        { "source": "D", "target": "E" },
+        { "source": "C", "target": "H" },
+        { "source": "D", "target": "H" },
+        { "source": "E", "target": "F" },
+        { "source": "F", "target": "G" },
+        { "source": "G", "target": "E" },
+        { "source": "I", "target": "A" }
+    ]
+}
